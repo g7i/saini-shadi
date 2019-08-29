@@ -247,8 +247,6 @@ def register(request):
     if not request.user.published:  
         return redirect('edit')
     reg = Register.objects.create(user=request.user)
-    if request.user.is_anonymous:
-        return redirect('logout')
     global USER
     USER = request.user
     param_dict = {
@@ -280,6 +278,7 @@ def handlerequest(request):
                 reg = get_object_or_404(Register,pk=int(response_dict['ORDERID']))
                 reg.status = 'Yes'
                 reg.save()
+                global USER
                 USER.registered = True
                 USER.save()
         return render(request, 'paystatus.html',{'response':response_dict})
