@@ -9,7 +9,7 @@
     <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">  
 
 </head>
-<body>{{response}}
+<body>
         <div class="payment">
                 <div class="container">
     <h1>Payment Status</h1>
@@ -20,6 +20,7 @@
     <h4>You've been registered with Sainishadi.com</h4>
     {% else %}
     STATUS : Payment Failed
+    ERROR CODE : {{response.RESPCODE}}	
     {% endif %}
 <br>
 
