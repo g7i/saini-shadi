@@ -264,19 +264,22 @@ def register(request):
 
 @csrf_exempt
 def handlerequest(request):
-    form = request.POST
-    response_dict = {}
-    for i in form.keys():
-        response_dict[i] = form[i]
-        if i == 'CHECKSUMHASH':
-            checksum = form[i]
+    try:
+        form = request.POST
+        response_dict = {}
+        for i in form.keys():
+            response_dict[i] = form[i]
+            if i == 'CHECKSUMHASH':
+                checksum = form[i]
 
-    verify = Checksum.verify_checksum(response_dict,MERCHANT_KEY,checksum)
-    if verify:
-        if response_dict['RESPCODE'] == '01':
-            reg = get_object_or_404(Register,pk=int(response_dict['ORDERID']))
-            reg.status = 'Yes'
-            reg.save()
-            USER.registered = True
-            USER.save()
-    return render(request, 'paystatus.html',{'response':response_dict})
+        verify = Checksum.verify_checksum(response_dict,MERCHANT_KEY,checksum)
+        if verify:
+            if response_dict['RESPCODE'] == '01':
+                reg = get_object_or_404(Register,pk=int(response_dict['ORDERID']))
+                reg.status = 'Yes'
+                reg.save()
+                USER.registered = True
+                USER.save()
+        return render(request, 'paystatus.html',{'response':response_dict})
+    except:
+        return redirect('logout')
