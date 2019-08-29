@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Payment Status</title>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">  
+
+</head>
+<body>
+        <div class="payment">
+                <div class="container">
+    <h1>Payment Status</h1>
+    <h2>Amount : {{response.TXNAMOUNT}}</h2>
+    <h2>ID : {{response.ORDERID}}</h2><br><br>
+    {% if response.RESPCODE == '01' %}
+    STATUS : Payment successful<br><br>
+    <h4>You've been registered with Sainishadi.com</h4>
+    {% else %}
+    STATUS : Payment Failed
+    {% endif %}
+<br>
+
+    <a href="{% url 'home' %}"><button>Return Home</button></a>
+    </div></div>
+</body>
+</html>

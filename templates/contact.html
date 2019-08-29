@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}<br><br><br>
+{% load staticfiles %}
+<section id="contact-section">
+    <div class="container">
+      <div style="margin: 50px auto;">
+          <h2 style="text-align: center;">Contact Us</h2>
+      <div class="row no-gutters" style="margin-top: 50px;">
+        <div class="col-6 col-sm-6">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-lg-6 text-center heading-section mb-5 align-self-center">
+              <ul class="list-unstyled text-left address">
+                <li>
+                  <span class="d-block">Address:</span>
+                  <p>H.O. - Plot no. 48 Officers Enclave -2 Apna ghar Shalimar Alwar Rajasthan 301001.</p>
+                </li>
+                <li>
+                  <span class="d-block">Phone:</span>
+                  <p>+91 9982289111</p>
+                </li>
+                <li>
+                  <span class="d-block">Email:</span>
+                  <p>sainishadi@gmail.com</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+</div>
+        <div class="col-6 col-sm-6">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-lg-6 text-center heading-section mb-5 align-self-center">
+                    <ul class="list-unstyled text-left address">
+                        <li>
+                          <span class="d-block" style="margin-bottom: 10px">Email Us:</span>
+                          <p><a href="mailto:sainishadi@gmail.com" class="btn btn-primary">Email Us</a></p>
+                        </li>
+                        <li>
+                          <span class="d-block" style="margin-bottom: 10px">Follow Us:</span>
+                          <p><a href="https://www.facebook.com/sainishadicom-108419563838825" class="pl-0 pr-3 social-link"><img height=40 src="{% static 'facebook.png' %}" style="border-radius: 95%;margin-left: 20px;"/></a></p>
+                        </li>
+                      </ul>
+          
+        </div></div></div>
+      </div>
+      </div>
+    </div>
+  </section>
+ 
+{% endblock content %}

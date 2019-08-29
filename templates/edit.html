@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+<br><br><br>
+<script type="text/JavaScript" src='{% static "state.js" %}'></script>
+
+<div class="container bootstrap snippet">
+    <div class="row">
+  		<div class="col-sm-10" style="margin-left: 50px;"><h1 style="font-size: 2.5em;">{{user.username}}</h1></div>
+    	<br><br>
+    </div><form class="form" action="{% url 'edit' %}" method="post" id="registrationForm" enctype="multipart/form-data">
+    <div class="row">
+  		<div class="col-sm-3"><!--left col-->
+              
+
+      <div class="text-center" style="margin-top: 20px;">
+        <img src="{{user.image.url}}" class="avatar img-circle img-thumbnail" alt="avatar"><br>
+        <h6>Upload a different photo...</h6><br>
+        <input type="file" class="text-center center-block file-upload" name="image" >
+      </div><br>
+
+          
+        </div><!--/col-3-->
+    	<div class="col-sm-9">
+
+              
+          <div class="tab-content">
+            <div class="tab-pane active" id="home">
+                <hr>
+                  
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="first_name"><h4>First name</h4></label>
+                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any." value="{{user.first_name}}" required>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                            <label for="last_name"><h4>Last name</h4></label>
+                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any." value="{{user.last_name}}" required>
+                          </div>
+                      </div>
+          
+                     
+                      <div class="form-group">
+                          
+                        <div class="col-xs-6">
+                        <label for="father_name"><h4>Father's Name</h4></label>
+                    <input type="text" class="form-control" name="father_name" id="father_name" placeholder="Father's Name" title="enter your Father's Name." value="{{user.father_name}}" required>
+                      </div></div>
+          
+                     
+                      <div class="form-group">
+                          
+                          <div class="col-xs-6">
+                              <label for="email"><h4>Email</h4></label>
+                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email." value="{{user.email}}" required>
+                          </div>
+                      </div>
+                      
+                          <div class="form-group">
+                          
+                            <div class="col-xs-6">
+                              <label for="dob"><h4>Date of Birth</h4></label>
+                                <input type="date" class="form-control" name="dob" id="dob" placeholder="DOB" title="enter your DOB." value="{{user.dob|date:'Y-m-d'}}" required>
+                            </div></div>
+
+                            <div class="form-group">
+                          
+                              <div class="col-xs-6">
+                                  <label for="address"><h4>Address</h4></label>
+                                  <textarea class="form-control" id="address" placeholder="somewhere" title="enter your Address" name="address" required>{{user.address}}</textarea>
+                              </div>
+                          </div>
+                            
+                                <div class="form-group">
+                                  <div class="col-xs-6"><br>
+                                    <label for="edu"><h4>Education</h4></label>
+                                      <textarea class="form-control" name="edu" id="edu" placeholder="education" title="enter your education." required>{{user.edu}}</textarea>
+                                  </div></div>
+                                    
+                                   
+                                        <div class="form-group">
+                          
+                                          <div class="col-xs-6">
+                                            <label for="job_desc"><h4>Job Description</h4></label>
+                                            <textarea class="form-control" name="job_desc" id="job_desc" placeholder="Job Description" title="enter your job description." required>{{user.job_desc}}</textarea>
+                                            </div></div>
+                                            
+                                              <div class="form-group">
+                                                <div class="col-xs-6">
+                                                <label for="height"><h4>Height</h4></label><br>
+                                                <input type="text" class="form-control" name="feet" id="height" placeholder="feet" title="enter your Height Feet." style="width: 40%;display: inline;" value="{{user.height_foot}}">
+                                              <input type="text" class="form-control" name="inch" id="inch" placeholder="Inch" title="enter your Height inch." style="width: 40%;display: inline;" value="{{user.height_inch}}">
+                                             </div></div>
+                                                                          
+                                               <div class="form-group">
+                                                  <div class="col-xs-6">
+                                                    <label for="state"><h4>State</h4></label>
+                                                    <select id="listBox" onchange='selct_district(this.value)' name="state">
+                                                      
+                                                    </select>
+
+                                                     
+                                                   </div></div>
+                                                   <div class="form-group">
+                                                    <div class="col-xs-6">
+                                                      <label for="district"><h4>District</h4></label>
+                                                      <select id='secondlist' name="city">
+                                                        <option value="{{user.city}}">{{user.city}}</option>
+                                                       </select>
+                                                     </div></div>
+                                               <div class="form-group">
+                          
+                                                <div class="col-xs-6">
+                                                    <label for="gender"><h4>Gender</h4></label>
+                                                    <fieldset>
+                                                      {% if user.gender == 'Female' %}
+                                                      <input type="radio" name='gender' value='Male'>Male
+                                                      <input type="radio" name='gender' value='Female' checked>Female
+                                                      {% else %}
+                                                      <input type="radio" name='gender' value='Male' checked>Male
+                                                      <input type="radio" name='gender' value='Female'>Female
+                                                      {% endif %}
+                                                  </fieldset>
+                                                </div>
+                                            </div>
+    
+                                            <div class="form-group">
+                          
+                                              <div class="col-xs-6">
+                                                     <label for="job_type"><h4>Job Type</h4></label>
+                                                     <fieldset>
+                                                       {% if user.job_type == 'pvt' %}
+                                                             <input type="radio" name='job_type' value='self'>Self
+                                                             <input type="radio" name='job_type' value='pvt' checked>Employee
+                                                             {% else %}
+                                                             <input type="radio" name='job_type' value='self' checked>Self
+                                                             <input type="radio" name='job_type' value='pvt'>Employee
+                                                             {% endif %}
+                                                   </fieldset>
+                                                   </div></div>               
+
+                                           <div class="form-group">
+                          
+                                            <div class="col-xs-6">
+                                            <label for="manglik"><h4>Manglik</h4></label>
+                                            <fieldset>
+                                              {% if user.manglik == 'No' %}
+                                                      <input type="radio" name='manglik' value='Yes'>Yes
+                                                      <input type="radio" name='manglik' value='No' checked>No
+                                                      {% else %}
+                                                      <input type="radio" name='manglik' value='Yes' checked>Yes
+                                                      <input type="radio" name='manglik' value='No'>No
+                                                      {% endif %}
+                                          </fieldset>
+                                          </div></div>
+
+                                          <div class="form-group">
+                          
+                                            <div class="col-xs-6">
+                                            <label for="drink"><h4>Drink</h4></label>
+                                            <fieldset>
+                                              {% if user.drink == 'Yes' %}
+                                                      <input type="radio" name='drink' value='Yes' checked>Yes
+                                                      <input type="radio" name='drink' value='No'>No
+                                                      {% else %}
+                                                      <input type="radio" name='drink' value='Yes'>Yes
+                                                      <input type="radio" name='drink' value='No' checked>No
+                                                      {% endif %}
+                                          </fieldset>
+                                          </div></div>
+
+                                          <div class="form-group">
+                          
+                                            <div class="col-xs-6">
+                                            <label for="smoking"><h4>Smoking</h4></label>
+                                            <fieldset>
+                                              {% if user.smoking == 'Yes' %}
+                                              <input type="radio" name='smoking' value='Yes' checked>Yes
+                                              <input type="radio" name='smoking' value='No'>No
+                                              {% else %}
+                                              <input type="radio" name='smoking' value='Yes'>Yes
+                                              <input type="radio" name='smoking' value='No' checked>No
+                                              {% endif %}
+                                          </fieldset>
+                                          </div></div>
+
+                                          <div class="form-group">
+                          
+                                              <div class="col-xs-6">
+                                              <label for="status"><h4>Status</h4></label>
+                                              <fieldset>
+                                                {% if user.status == 'Divorced' %}
+                                                <input type="radio" name='status' value='Unmarried'>Unmarried
+                                                <input type="radio" name='status' value='Divorced' checked>Divorced
+                                                {% else %}
+                                                <input type="radio" name='status' value='Unmarried' checked>Unmarried
+                                                <input type="radio" name='status' value='Divorced'>Divorced
+                                                {% endif %}
+                                            </fieldset>
+                                            </div></div>
+
+                                          <div class="form-group">
+                          
+                                            <div class="col-xs-6">
+                                            <label for="colour"><h4>Colour</h4></label>
+                                            <fieldset>
+                                                {% if user.colour == 'Fair' %}
+                                                <input type="radio" name='colour' value='Fair' checked>Fair
+                                              <input type="radio" name='colour' value='Medium'>Medium
+                                              <input type="radio" name="colour" 
+                                              value='Dark'>Dark
+                                                {% elif user.colour == 'Dark' %}
+                                                <input type="radio" name='colour' value='Fair'>Fair
+                                              <input type="radio" name='colour' value='Medium'>Medium
+                                              <input type="radio" name="colour" 
+                                              value='Dark' checked>Dark
+                                                {% else %}
+                                              <input type="radio" name='colour' value='Fair'>Fair
+                                              <input type="radio" name='colour' value='Medium' checked>Medium
+                                              <input type="radio" name="colour" 
+                                              value='Dark'>Dark
+                                              {% endif %}
+                                          </fieldset>
+                                          </div></div>
+
+                                          <div class="form-group">
+                          
+                                            <div class="col-xs-6">
+                                            <label for="physique"><h4>Physique</h4></label>
+                                            <fieldset>
+                                                {% if user.physique == 'Fair' %}
+                                                <input type="radio" name='physique' value='Fat' checked>Fat
+                                              <input type="radio" name='physique' value='Average'>Average
+                                              <input type="radio" name="physique" 
+                                              value='Slim'>Slim
+                                                {% elif user.physique == 'Slim' %}
+                                                <input type="radio" name='physique' value='Fat'>Fat
+                                              <input type="radio" name='physique' value='Average'>Average
+                                              <input type="radio" name="physique" 
+                                              value='Slim' checked>Slim
+                                                {% else %}
+                                              <input type="radio" name='physique' value='Fat'>Fat
+                                              <input type="radio" name='physique' value='Average' checked>Average
+                                              <input type="radio" name="physique" 
+                                              value='Slim'>Slim
+                                              {% endif %}
+                                          </fieldset>
+                                          </div></div>
+
+                      
+                      {% csrf_token %}
+                    </div><!--/tab-pane-->
+                  </div><!--/tab-pane-->
+              </div><!--/tab-content-->
+    
+            </div><div class="col-sm-3"></div>
+            <div class="col-sm-9">
+                <h3>Gotra Info</h3>
+                    <br>
+                <div class="col-xs-6">
+                  
+                  <label for="self_gotra"><h4>Self Gotra</h4></label>
+                    <input type="text" class="form-control" name="self_gotra" id="self_gotra" placeholder="Self Gotra" title="enter your gotra." value="{{user.self_gotra}}">
+                </div>
+                  
+                    <div class="col-xs-6">
+                      <label for="mother_gotra"><h4>Mother Gotra</h4></label>
+                        <input type="text" class="form-control" name="mother_gotra" id="mother_gotra" placeholder="mother gotra" title="enter your mother gotra." value="{{user.mother_gotra}}">
+                    </div>
+                  
+                        <div class="col-xs-6"><br>
+                          <label for="dadi_gotra"><h4>Dadi Gotra</h4></label>
+                            <input type="text" class="form-control" name="dadi_gotra" id="dadi_gotra" placeholder="dadi gotra" title="enter your dadi gotra." value="{{user.dadi_gotra}}">
+                        </div>
+                            <div class="col-xs-6"><br>
+                              <label for="nani_gotra"><h4>Nani Gotra</h4></label>
+                                <input type="text" class="form-control" name="nani_gotra" id="nani_gotra" placeholder="nani gotra" title="enter your nani gotra." value="{{user.nani_gotra}}">
+                               
+                             </div>
+                             <div class="form-group">
+                                <div class="col-xs-12">
+                                     <br>
+                                     <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                 </div>
+                           </div></div>
+              	</form>
+              
+              
+             <!--/col-9-->
+    </div><!--/row-->
+                     <br><br><br>        
+                     
+                     
+<script>
+  $(document).ready(function(){
+    var state = '{{user.state}}';
+    $('#listBox').val(state);
+  });
+</script>
+
+{% endblock content %}

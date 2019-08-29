@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="team">
+		<div class="container"> 
+			<h3 class="agileits-title">
+				{% if not error %}Profiles Matches<br><br>{% endif %}{{error}}</h3> 
+			<div class="team-agileinfo agileits-w3layouts">
+				{% for profile in profiles %}
+				<div class="col-md-6 team-grid w3-agileits" style="margin-bottom: 30px;">
+					<div class="team-grid-right aliquam">
+						<img src="{{profile.image.url}}" alt=" " class="img-responsive" style="height:150px;width:200px;" />
+					</div>
+					<div class="team-grid-left non">
+						<a href="{% url 'detail' profile.id %}" data-toggle="modal"><h4>{{profile.get_full_name.title}}</h4></a>
+						<p>Age : {{profile.age}}</p>
+						<p>City : {{profile.city}}</p>
+					</div> 
+					<div class="clearfix"> </div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+    </div>
+    
+{% endblock content %}

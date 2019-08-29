@@ -1,0 +1,121 @@
+{% block search %}
+
+{% load staticfiles %}
+<script type="text/JavaScript" src='{% static "state.js" %}'></script>
+
+<style> 
+    
+    select { 
+        -webkit-appearance: none; 
+        -moz-appearance: none; 
+        -ms-appearance: none; 
+        appearance: none; 
+        outline: 0; 
+        background: linear-gradient(45deg, #ff4b5a 0%, #2c6dd5 28%, #ff4b5a 91%, #2c6dd5 100%);
+        background-image: none; 
+        border:1px solid black; 
+    } 
+    .select { 
+        position: relative; 
+        display: block; 
+        width: 20em; 
+        height: 3em; 
+        line-height: 3; 
+        background: linear-gradient(45deg, #ff4b5a 0%, #ff4b5a 28%, #2c6dd5 91%, #2c6dd5 100%);
+        overflow: hidden; 
+        border-radius: .25em; 
+    } 
+    select { 
+        width: 100%; 
+        height: 100%; 
+        margin: 0; 
+        padding: 0 0 0 .5em; 
+        color: #fff; 
+        cursor: pointer; 
+    } 
+    select::-ms-expand { 
+        display: none; 
+    }  
+    .select::after { 
+        content: '\25BC'; 
+        position: absolute; 
+        top: 0; 
+        right: 0; 
+        bottom: 0; 
+        padding: 0 1em; 
+        background: linear-gradient(45deg, #2c6dd5 0%, #2c6dd5 28%, #ff4b5a 91%, #ff4b5a 100%); 
+        pointer-events: none; 
+    } 
+    .select:hover::after { 
+        color: rgb(255, 255, 255); 
+    } 
+      
+    .select::after { 
+        -webkit-transition: .25s all ease; 
+        -o-transition: .25s all ease; 
+        transition: .25s all ease; 
+    } 
+</style> 
+
+<div class="s010">
+    <form action="{% url 'search' %}" method="POST">
+      {% csrf_token %}
+      <div class="inner-form">
+        
+        <div class="advance-search">
+          <span class="desc">SEARCH</span>
+          <div class="row">
+            <div class="input-field">
+              <div class="input-select select">
+                <select data-trigger="" name="gender">
+                  <option placeholder="" value="">Looking For?</option>
+                  <option  value="Male">Male</option>
+                  <option  value="Female">Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="input-field">
+              <div class="input-select select">
+                <select data-trigger="" name="age">
+                  <option placeholder="" value="">Age Group</option>
+                  <option value="1">18-21</option>
+                  <option value="2">22-25</option>
+                  <option value="3">26-29</option>
+                  <option value="4">30-33</option>
+                  <option value="5">34-37</option>
+                </select>
+              </div>
+            </div>
+
+              <div class="input-field">
+                <div class="input-select select">
+                  <select id="listBox" onchange='selct_district(this.value)' name="state"></select>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-select select">
+                  <select id='secondlist' name="city">
+                  <option value="">SELECT DISTRICT</option>
+                </select>
+                </div>
+              </div>
+            
+          </div>
+
+          <div class="row third">
+            <div class="input-field">
+              <div class="result-count">
+                <span>Sainishadi.com</span>Search</div>
+              <div class="group-btn">
+                <button class="btn-search">SEARCH</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+
+
+{% endblock search %}

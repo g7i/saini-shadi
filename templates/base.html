@@ -1,0 +1,207 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+<title>Saini Shadi</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Bouquet Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/bootstrap.css' %}" type="text/css" rel="stylesheet" media="all">
+<link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">  
+<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">   <!-- font-awesome icons -->
+<link rel="stylesheet" href="{% static 'css/swipebox.css' %}"> 
+<!-- //Custom Theme files -->   
+<!-- js -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<!-- //js -->
+<!-- web-fonts -->    
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Lato" />
+<!-- //web-fonts -->  
+
+</head>
+<body>
+	<!-- banner start here -->
+	<div id="home" class="banner">
+		<div class="agileinfo-main">
+			<div class="slider">
+				<script src="{% static 'js/responsiveslides.min.js' %}"></script>
+				
+				<ul class="rslides" id="slider1">
+					<li> 
+						<div class="banner-w3lstext">
+						</div>	
+					</li>
+					
+				</ul>
+			</div>	
+			<div class="agileinfo-header">
+				<div class="container">
+					<div class="agile-logo">
+						<h1><a href="{% url 'home' %}"><img src="{% static 'images/i1.png' %}" class="img-responsive" alt="" style="height: auto;width: 5vw;" /> SainiShadi.Com</a></h1>
+					</div>
+					<div class="agileits-w3layouts-icons">
+						<div class="social-icon w3-agile">
+							<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+							<a href="https://www.facebook.com/Sainishadicom-108419563838825/" class="social-button facebook"><i class="fa fa-facebook"></i></a> 
+							<a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a> 
+							<a href="#" class="social-button dribbble"><i class="fa fa-dribbble"></i></a> 
+						</div> 
+					</div>
+					<div class="clearfix"> </div>
+				</div>	    
+			</div>
+			<!-- navigation start here -->
+			<div class="top-nav">
+				<span class="menu">Menu</span>	
+				<ul class="w3l">
+					<li><a class="active" href="{% url 'home' %}"><span>Home</span></a></li>
+					<li><a href="{% url 'contact' %}" ><span>Contact</span></a></li>
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'profile' %}"><span>Profile</span></a></li>
+					<li><a href="{% url 'logout' %}"><span>Logout {{user.username}}</span></a></li>
+					{% if not user.registered %}
+					<li><a href="{% url 'register' %}"><span>Register</span></a></li>
+					{% endif %}
+					{% else %}
+					<li><a href="{% url 'signup' %}"><span>Sign up</span></a></li> 
+					<li><a href="{% url 'login' %}"><span>Login</span></a></li>
+					
+					{% endif %}
+				</ul>
+				<!-- script-for-menu -->
+				
+				<!-- //script-for-menu -->
+			</div><!-- //navigation end here -->	
+		</div>
+	</div> 
+    <!-- //banner end here -->
+    
+
+    {% block content %}
+      
+    {% endblock content %}
+
+    	<!-- footer start here --> 
+	<div class="footer-agile">
+		<div class="container">
+			<div class="footer-top-agileinfo"> 
+				<div class="col-md-6 col-sm-6 footer-wthree-grid">  
+					<div class="agile-logo footer-w3logo">
+						<h2><a href="index.html"><img src="{% static 'images/i1.png' %}" alt="" style="height: auto;width: 5vw;" /> SainiShadi</a></h2>
+					</div>
+				</div> 
+				<div class="col-md-6 col-sm-6 footer-wthree-grid"> 
+					<ul>
+						<li><a class="active" href="{% url 'home' %}"><span>Home</span></a></li>
+					<li><a href="{% url 'contact' %}"><span>Contact</span></a></li>
+					{% if user.is_authenticated %}
+					<li><a href="{% url 'profile' %}"><span>Profile</span></a></li>
+					<li><a href="{% url 'logout' %}"><span>Logout {{user.username}}</span></a></li>
+					{% if not user.registered and user.published %}
+					<li><a href="{% url 'register' %}"><span>Register</span></a></li>
+					{% endif %}
+					{% else %}
+					<li><a href="{% url 'signup' %}"><span>Sign up</span></a></li> 
+					<li><a href="{% url 'login' %}"><span>Login</span></a></li>
+					{% endif %}
+					</ul>
+				</div> 	  
+				<div class="clearfix"> </div>		
+			</div>
+			<div class="footer-btm-agileinfo">
+				<div class="col-md-3 col-xs-3 footer-grid">
+					<h3>Contact Us</h3>
+					<ul>
+						<li>
+							<span>Address:</span>
+							<p>H.O. - Plot no. 48 Officers Enclave -2 Apna ghar Shalimar Alwar Rajasthan 301001.</p>
+						  </li>
+						  
+					</ul>
+				</div> 
+				<div class="col-md-3 col-xs-3 footer-grid ">
+						<br><br><br>
+						<ul class="list-unstyled text-left address">
+								
+								<li>
+								  <span>Phone:</span>
+								  <p>+91 9982289111</p>
+								</li>
+								<li>
+								  <span>Email:</span>
+								  <p>sainishadi@gmail.com</p>
+								</li>
+							  </ul>
+					</div> 
+				<div class="col-md-6 col-xs-6 footer-grid footer-review w3social">
+						
+					<div class="copy-w3lsright"> 
+									<h3>Social Media</h3>
+									<div class="social-icon">
+										<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+										<a href="https://www.facebook.com/Sainishadicom-108419563838825/" class="social-button facebook"><i class="fa fa-facebook"></i></a> 
+										<a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a> 
+										<a href="#" class="social-button dribbble"><i class="fa fa-dribbble"></i></a> 
+									</div> 
+									<p>© 2019 All rights reserved by Sainishadi.com.</p>
+						<p>© 2017 Bouquet . All rights reserved | Design by <a href="http://w3layouts.com"> W3layouts.</a></p>
+					</div> 
+				</div> 
+				<div class="clearfix"> </div>
+			</div>   
+		</div>
+	</div> 
+	<!-- //footer end here -->   
+	<!-- Kick off Filterizr -->
+	<script src="{% static 'js/jquery.filterizr.js' %}"></script>  
+	<script src="{% static 'js/controls.js' %}"></script> 
+		
+	<!-- swipe box js -->
+	
+	<!-- //swipe box js --> 	 
+	<!-- start-smooth-scrolling -->
+	<script src="{% static 'js/SmoothScroll.min.js' %}"></script> 
+	<script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/easing.js' %}"></script>	
+	<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+			
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+	</script>
+	<!-- //end-smooth-scrolling -->	
+	<!-- smooth-scrolling-of-move-up -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+			};
+			*/
+			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			
+		});
+	</script>
+	<!-- //smooth-scrolling-of-move-up -->  
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+</body>
+</html>

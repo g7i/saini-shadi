@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>SainiShadi.com</title>
+    <script src="{% static 'reg/vendor/jquery/jquery.min.js' %}"></script>
+
+    <script>
+        $(document).ready(function(e){
+            $(document).on('click','#send',function(e){
+                e.preventDefault();
+                var ph = $('#ph').val();
+             
+                $.ajax({
+                    type:'POST',
+                    url:'{% url "send_otp" %}',
+                    data:{
+                        'phone_number':ph,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        alert(response['Message']);
+                    },
+                    error: function(rs, e) {
+                        alert('An error has occured..');
+                    }
+                });
+            });
+
+            $(document).on('click','#verify',function(e){
+                e.preventDefault();
+                var otp = $('#otp').val();
+             
+                $.ajax({
+                    type:'POST',
+                    url:'{% url "verify" %}',
+                    data:{
+                        'otp':otp,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        alert(response['Message']);
+                    },
+                    error: function(rs, e) {
+                        alert('An error has occured..');
+                    }
+                });
+            });
+
+            $(document).on('submit','form',function(e){
+                e.preventDefault();
+                var username = $('#username').val();
+                var password1 = $('#password1').val();
+                var password2 = $('#password2').val();
+                var phone_number = $('#ph').val();
+             
+                $.ajax({
+                    type:'POST',
+                    url:'{% url "signup" %}',
+                    data:{
+                            'username' : username,
+                            'password1' : password1,
+                            'password2' : password2,
+                            'phone_number' : phone_number,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        alert(response['Message']);
+                        if(response['Message']=='User created Successfully..')
+                            $(location).attr('href', '{% url 'edit' %}');
+                    },
+                    error: function(rs, e) {
+                        alert('An error has occured..');
+                    }
+                });
+            });
+
+        });
+    </script>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'reg/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'reg/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'reg/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'reg/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'reg/css/main.css' %}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Registration Info</h2>
+                    <form method="POST" action="{% url 'signup' %}">
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="USERNAME" id="username" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="password" placeholder="PASSWORD" id="password1" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="password" placeholder="CONFIRM PASSWORD" id="password2" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="MOBILE NO." id="ph" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn--radius btn--green" id="send">Send OTP</button>
+                            </div>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="text" placeholder="ENTER OTP" id="otp" required>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <button class="btn btn--radius btn--green" id="verify">Verify OTP</button>
+                            </div>
+                        </div>
+                    <br>
+                        <input type="checkbox" style="width: auto;" required> &nbsp;&nbsp;&nbsp;I Agreed To All The <a href="{% static 'terms.pdf' %}">Terms & Conditions.</a>
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <!-- Vendor JS-->
+    <script src="{% static 'reg/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'reg/vendor/datepicker/moment.min.js' %}"></script>
+    <script src="{% static 'reg/vendor/datepicker/daterangepicker.js' %}"></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'reg/js/global.js' %}"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

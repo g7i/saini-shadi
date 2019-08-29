@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Payment</title>
+    <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="all">  
+</head>
+<body>
+    <div class="payment">
+        <div class="container">
+    <form action=" https://securegw-stage.paytm.in/order/process" method="post" name="paytm">
+
+        {% for key, value in param_dict.items %}
+
+        <input type="hidden" name="{{key}}" value="{{value}}">
+
+        {% endfor %}
+
+        <h2>Proceed to <b>Rs. 101</b> to get registered with sainishadi.com</h2>
+        <h4><b>Note </b>: This is one time fee only and non-refundable under any conditions.</h4>
+        <input type="submit" value="Proceed..">
+
+    </form>
+    </div>
+    </div>
+</body>
+
+<script>
+</script>
+
+</html>
