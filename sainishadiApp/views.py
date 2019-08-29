@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 
 def home(request):
+    global USER
+    USER = request.user
     profiles = User.objects.all()
     profiles = profiles.filter(registered = True)
     profiles = profiles[:6]
@@ -102,6 +104,8 @@ def logout(request):
     return redirect('home')
 
 def profile(request):
+    global USER
+    USER = request.user
     return render(request,'profile.html')
 
 @login_required(login_url='login')
@@ -239,7 +243,6 @@ def otp_verification(request):
 from django.views.decorators.csrf import csrf_exempt
 from PayTm import Checksum
 MERCHANT_KEY = 'wUXm4Uzybte7klQ7'
-USER = ''
 
 def register(request):
     if request.user.registered:
