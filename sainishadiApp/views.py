@@ -247,6 +247,8 @@ def register(request):
     if not request.user.published:  
         return redirect('edit')
     reg = Register.objects.create(user=request.user)
+    if request.user == 'AnonymousUser':
+        return redirect('logout')
     global USER
     USER = request.user
     param_dict = {
