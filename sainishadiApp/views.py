@@ -264,7 +264,7 @@ def register(request):
 
 @csrf_exempt
 def handlerequest(request):
-    try:
+
         form = request.POST
         response_dict = {}
         for i in form.keys():
@@ -281,5 +281,3 @@ def handlerequest(request):
                 USER.registered = True
                 USER.save()
         return render(request, 'paystatus.html',{'response':response_dict})
-    except:
-        return redirect('logout')
