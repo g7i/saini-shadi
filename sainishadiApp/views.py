@@ -7,9 +7,9 @@ from django.template.loader import render_to_string
 def home(request):
     global USER
     USER = request.user
-    profiles = User.objects.all()
+    profiles = User.objects.all().order_by('-id')
     profiles = profiles.filter(registered = True)
-    profiles = profiles[:6]
+    profiles = profiles[:4]
     return render(request,'index.html',{'profiles':profiles})
 
 
