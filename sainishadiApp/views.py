@@ -260,7 +260,7 @@ def register(request):
             'INDUSTRY_TYPE_ID':'Retail',
             'WEBSITE':'WEBSTAGING',
             'CHANNEL_ID':'WEB',
-            'CALLBACK_URL':'http://ec2-13-234-30-158.ap-south-1.compute.amazonaws.com/handlerequest/',
+            'CALLBACK_URL':'sainishadi.tk/handlerequest/',
         }
     param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, MERCHANT_KEY)
     return render(request, 'paytm.html' , {'param_dict' : param_dict})
